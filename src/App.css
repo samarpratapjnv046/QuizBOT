@@ -1,14 +1,219 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-html{
-    font-size:62.5%;
-}
-body{
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    font-size: 62.5%;
+  }
+  
+  body {
     background: rgb(3, 0, 31);
-    color:white;
-    
-    
+    color: white;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .App {
+    min-height: 100vh;
+    display: flex;
+    overflow: hidden;
+  }
+  
+  .sidebar {
+    flex: 0 0 30rem;
+    border-right: 1px solid rgb(100, 100, 100);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #050218;
+  }
+  
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: calc(100vh-14rem);
+    align-items: center;
+    margin-bottom: 0;
+    margin:6rem 10rem;
+  }
+  
+  .logo{
+    margin-right: 1rem;
+    padding: 1rem;
 }
+  
+  .brand {
+    font-size: 2.2rem;
+    font-weight: bold;
+  }
+  
+  .upperSide {
+    padding: 2rem;
+    border-bottom: 1px solid rgb(100, 100, 100);
+  }
+  
+  .upperSideTop {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .addBtn {
+    height: 2rem;
+    margin-right: 1rem;
+  }
+  
+  .midBtn {
+    background-color: #5A4BFF;
+    border: none;
+    color: white;
+    padding: 1.2rem;
+    font-size: 1.4rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto 2rem auto;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .midBtn:hover {
+    background-color: #483bd4;
+  }
+  
+  .query {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    padding: 1.2rem;
+    color: rgba(222, 222, 222, 1);
+    width: 100%;
+    margin: 0.75rem 0;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(98, 98, 98, 1);
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .query:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  
+  .query > img {
+    margin-right: 1.5rem;
+    height: 1.75rem;
+    object-fit: cover;
+  }
+  
+  .lowerSide {
+    padding: 2rem;
+  }
+  
+  .listItems {
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    color: rgba(222, 222, 222, 0.9);
+    cursor: pointer;
+    padding: 1rem 0;
+    transition: color 0.3s ease;
+  }
+  
+  .listItems:hover {
+    color: white;
+  }
+  
+  .listItemsImg {
+    height: 2rem;
+    margin-right: 1.5rem;
+  }
+  
+  .main h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .chats {
+    width: 100%;
+    max-width: 80rem;
+    height: calc(100vh-17rem);
+    flex: 1;
+    overflow: hidden;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    scrollbar-width: none;  
+    padding: 2rem;
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  .chat{
+    margin: 1rem;
+    padding: 2rem 3rem;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: flex-start;
+    text-align: justify;
+  }
+  .bot {
+    background-color: rgba(28,30,58,1);
+    width: fit-content;
+    border-radius: 0.5rem;
+  }
+  .chatImg{
+    object-fit: cover;
+    width: 3.5rem;
+    margin-right: 2rem;
+    border-radius: 0.5rem;
+  }
+  
+  .chatFooter {
+    width: 100%;
+    max-width: 75rem;
+    display: flex;
+    align-items: center;
+    background-color: rgba(28,30,58,1);
+    border-radius: 0.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+
+  
+  .inp {
+    flex: 1;
+    display: flex;
+    background-color: #1f1f2e;
+    padding: 1.2rem 1.6rem;
+    border-radius: 0.5rem;
+    align-items: center;
+    gap: 1rem;
+    width: 80rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .inp input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1.4rem;
+    color: white;
+  }
+  
+  .sendBtn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .sendBtn img {
+    height: 2rem;
+  }
+  .restriction{
+    font-size: 15px;
+  }
