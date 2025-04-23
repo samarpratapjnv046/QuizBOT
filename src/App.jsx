@@ -8,7 +8,6 @@ import rocket from './assets/rocket.svg';
 import sendBtn from './assets/send.svg';
 import userIcon from './assets/user-icon.png'
 import gptImgLogo from './assets/chatgptLogo.svg'
-
 function App() {
   return (
     <div className="App">
@@ -53,7 +52,6 @@ function App() {
         </div>
       </div>
 
-      {/* Main Chat Area */}
       <div className="main">
         <h1>Welcome to ChatBOT</h1>
 
@@ -68,8 +66,8 @@ function App() {
 
         <div className="chatFooter">
           <div className="inp">
-            <input type="text" placeholder="Send a message..." />
-            <button className="sendBtn">
+            <input type="text" placeholder="Send a message..."  />
+            <button className="sendBtn" >
               <img src={sendBtn} alt="Send" />
             </button>
           </div>
