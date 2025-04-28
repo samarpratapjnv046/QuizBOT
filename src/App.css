@@ -217,3 +217,7 @@
   .restriction{
     font-size: 15px;
   }
+  .txt{
+    line-height: 2.4rem;
+    color: rgba(222, 222, 222, 1);
+  }

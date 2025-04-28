@@ -8,7 +8,57 @@ import rocket from './assets/rocket.svg';
 import sendBtn from './assets/send.svg';
 import userIcon from './assets/user-icon.png'
 import gptImgLogo from './assets/chatgptLogo.svg'
+import { sendMsgToOpenAi } from './openai';
+import { useEffect, useRef, useState } from 'react';
+
 function App() {
+  const msgEnd = useRef(null);
+  const [input, setInput] = useState("");
+  const [messages, setMessages] = useState([
+    {
+      text: "Hi I am ChatBOT .. ",
+      isBot: true
+    }
+  ]);
+
+  useEffect(() => {
+    msgEnd.current.scrollIntoView();
+  }, [messages]);
+
+  const handelSend = async () => {
+    const text = input;
+    setInput('');
+    setMessages([
+      ...messages,
+      { text, isBot: false }
+    ]);
+    const res = await sendMsgToOpenAi(input);
+    setMessages([...messages,
+      { text, isBot: false },
+      { text: res, isBot: true }
+    ]);
+  };
+
+  const handelEnter = async (e) => {
+    if (e.key === 'Enter') {
+      await handelSend();
+    }
+  };
+
+  const handelQuery = async (query) => {
+    const text = query;
+    setInput(query); 
+    setMessages([
+      ...messages,
+      { text, isBot: false }
+    ]);
+    const res = await sendMsgToOpenAi(query);
+    setMessages([...messages,
+      { text, isBot: false },
+      { text: res, isBot: true }
+    ]);
+  };
+
   return (
     <div className="App">
       {/* Sidebar */}
@@ -19,19 +69,18 @@ function App() {
             <span className="brand">ChatBOT</span>
           </div>
 
-          <button className="midBtn">
+          <button className="midBtn" onClick={() => { window.location.reload() }}>
             <img src={addBtn} alt="New Chat" className="addBtn" />
             New Chat
           </button>
 
           <div className="upperSideBottom">
-            <button className="query">
-              <img src={msgIcon} alt="Query" />
-              What is Programming?
+            {/* Query buttons */}
+            <button onClick={() => handelQuery("What is Programming?")} className="query">
+              <img src={msgIcon} alt="Query" /> What is Programming?
             </button>
-            <button className="query">
-              <img src={msgIcon} alt="Query" />
-              What is React Js?
+            <button onClick={() => handelQuery("What is React Js?")} className="query">
+              <img src={msgIcon} alt="Query" /> What is React Js?
             </button>
           </div>
         </div>
@@ -56,18 +105,25 @@ function App() {
         <h1>Welcome to ChatBOT</h1>
 
         <div className="chats">
-          <div className="chat">
-              <img className='chatImg'  src={userIcon} alt=""  /><p className="txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt corrupti suscipit maiores, praesentium sint eaque rem repudiandae reiciendis neque dolore fugit dicta maxime delectus. Nam ipsam repellendus voluptatibus praesentium eaque!</p>
-          </div>
-          <div className="chat bot">
-              <img className='chatImg' src={gptImgLogo} alt=""  /><p className="txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus culpa accusantium distinctio velit perferendis dolorum repellat ad nobis odit nostrum, at commodi numquam dolore. Consectetur deleniti nesciunt tenetur totam, excepturi, deserunt eveniet modi placeat a, iure omnis? Cumque a tempore possimus, consequuntur eveniet sed iste, ea aperiam nostrum dignissimos culpa itaque nisi nemo dolorem ullam provident corporis quis repellendus soluta inventore rerum! Eos tempore molestias pariatur exercitationem et cum dignissimos cupiditate. Maiores expedita sapiente porro totam sed voluptatem corporis quasi magni quae iusto suscipit ex modi, pariatur veniam? Culpa, cum est voluptatum dolore voluptates eveniet dolorum aliquid accusamus autem aut!</p>
-          </div>
+          {messages.map((message, i) => (
+            <div key={i} className={message.isBot ? "chat bot" : "chat"}>
+              <img className="chatImg" src={message.isBot ? gptImgLogo : userIcon} alt="" />
+              <p className="txt">{message.text}</p>
+            </div>
+          ))}
         </div>
+        <div ref={msgEnd} />
 
         <div className="chatFooter">
           <div className="inp">
-            <input type="text" placeholder="Send a message..."  />
-            <button className="sendBtn" >
+            <input
+              type="text"
+              placeholder="Send a message..."
+              value={input}
+              onKeyDown={handelEnter}
+              onChange={(e) => { setInput(e.target.value) }}
+            />
+            <button className="sendBtn" onClick={handelSend}>
               <img src={sendBtn} alt="Send" />
             </button>
           </div>
